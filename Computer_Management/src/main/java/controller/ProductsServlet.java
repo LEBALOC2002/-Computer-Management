@@ -214,6 +214,8 @@ public class ProductsServlet extends HttpServlet {
         catch (NumberFormatException numberFormatException) {
             errors.add("Định dạng của giá hoặc số lượng không hợp lệ");
         } finally {
+            if (request.getAttribute("product") == null)
+                request.setAttribute("product", oldProduct);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/products/edit.jsp");
             request.setAttribute("errors", errors);
             requestDispatcher.forward(request, response);
